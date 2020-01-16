@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './global.css';
+import './Sidebar.css';
 function App() {
   
   return (
@@ -29,11 +30,59 @@ function App() {
                   <input name="longitude" id="longitude" required />
                 </div>
               </div>
-              <button type="submit">Salvar</button>
+               <button class = "button" type="submit">Salvar</button>
             </form>
         </aside>
         <main>
-          
+          <ul>
+            <li className="dev-item">
+              <header>
+                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
+                  <div className = "user-info">
+                      <strong> Julio Cesar </strong>    
+                      <span>React, NodeJS</span>
+                  </div>
+              </header>
+                <p>Apaixonado por tenclogia. Leia e beba água</p>
+                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
+            </li>
+
+            <li className="dev-item">
+              <header>
+                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
+                  <div className = "user-info">
+                      <strong> Julio Cesar </strong>    
+                      <span>React, NodeJS</span>
+                  </div>
+              </header>
+                <p>Apaixonado por tenclogia. Leia e beba água</p>
+                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
+            </li>
+
+            <li className="dev-item">
+              <header>
+                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
+                  <div className = "user-info">
+                      <strong> Julio Cesar </strong>    
+                      <span>React, NodeJS</span>
+                  </div>
+              </header>
+                <p>Apaixonado por tenclogia. Leia e beba água</p>
+                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
+            </li>
+
+            <li className="dev-item">
+              <header>
+                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
+                  <div className = "user-info">
+                      <strong> Julio Cesar </strong>    
+                      <span>React, NodeJS</span>
+                  </div>
+              </header>
+                <p>Apaixonado por tenclogia. Leia e beba água</p>
+                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
+            </li>
+          </ul>
         </main>
       </div>
       
