@@ -1,87 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'; //USESTATE É RESPONSAVEL POR EXECUTAR VARIAVEIS QUE PODE ALTERAR DE VALOR. 
+import api from './services/api';
+import DevForm from './components/DevForm';
+import DevItem from './components/DevItem';
+
 import './App.css';
 import './global.css';
 import './Sidebar.css';
-function App() {
-  
+import './Main.css';
+
+
+
+
+
+function App()
+
+{
+
+  const [devs, setDevs] = useState([]);
+
+  useEffect(() => //FUNCAO RESPONSÁVEL POR DISPARAR UMA FUNCÃO TODA VEZ QUE UM VALOR ALTERAR. PASSA DOIS PARAMETROS (O QUE E QUANDO) - VETORH
+{
+  async function LoadDevs() //FUNCAO QUE FAZ O GET DOS DADOS NA API
+  {
+    const response = await api.get('/devs');
+      setDevs(response.data);
+  }
+  LoadDevs(); 
+}, []);
+
+
+ 
+
+
+
+
+  async function handleAddDev(data)//FUNCTION QUE DEVEMOS PASSAR O EVENTO POR PARÂMETRO
+  {
+    
+    const response = await api.post('/devs', data); //PASSAMOS A ROTA E BUSCAMOS A API PARA REALIZAR O REQUEST
+    setDevs([...devs, response.data]); //mostra a lista dos devs cadastrados logo apos cadastrar um novo
+  }
+
   return (
     <div id="app">
         <aside> 
             <strong>Cadastrar</strong>
-            <form>
-              <div className="input-block">
-                <label htmlFor="">Usuário do Github</label>
-                <input name="github_username" id="github_username" required />
-              </div>
-              
-              <div className="input-block">
-                <label htmlFor="">Techs</label>
-                <input name="techs" id="techs" required />
-              </div>
-              
-            <div className="input-group">
-                <div className="input-block">
-                  <label htmlFor="">Latitude</label>
-                  <input name="latitude" id="latitude" required />
-                </div>
-                <div className="input-block">
-                  <label htmlFor="">Longitude</label>
-                  <input name="longitude" id="longitude" required />
-                </div>
-              </div>
-               <button class = "button" type="submit">Salvar</button>
-            </form>
+         <DevForm onSubmit={handleAddDev}></DevForm>
         </aside>
         <main>
-          <ul>
-            <li className="dev-item">
-              <header>
-                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
-                  <div className = "user-info">
-                      <strong> Julio Cesar </strong>    
-                      <span>React, NodeJS</span>
-                  </div>
-              </header>
-                <p>Apaixonado por tenclogia. Leia e beba água</p>
-                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
-            </li>
-
-            <li className="dev-item">
-              <header>
-                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
-                  <div className = "user-info">
-                      <strong> Julio Cesar </strong>    
-                      <span>React, NodeJS</span>
-                  </div>
-              </header>
-                <p>Apaixonado por tenclogia. Leia e beba água</p>
-                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
-            </li>
-
-            <li className="dev-item">
-              <header>
-                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
-                  <div className = "user-info">
-                      <strong> Julio Cesar </strong>    
-                      <span>React, NodeJS</span>
-                  </div>
-              </header>
-                <p>Apaixonado por tenclogia. Leia e beba água</p>
-                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
-            </li>
-
-            <li className="dev-item">
-              <header>
-                <img src="https://avatars1.githubusercontent.com/u/47247293?s=460&v=4"></img>
-                  <div className = "user-info">
-                      <strong> Julio Cesar </strong>    
-                      <span>React, NodeJS</span>
-                  </div>
-              </header>
-                <p>Apaixonado por tenclogia. Leia e beba água</p>
-                <a href="https://github.com/jcwisniewski">Acessar Perfil do GitHub</a>
-            </li>
+        <ul>
+          {devs.map(dev => ( //EXECUTA UM MAPEAMENTO EM CADA ID CADASTRADO PARA REPETIR DENTRO DO HTML
+            <DevItem key={dev._id} dev={dev}></DevItem>
+          )) }  
           </ul>
         </main>
       </div>
